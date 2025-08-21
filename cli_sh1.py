@@ -11,14 +11,14 @@ def index():
     # render historii jako pseudo-CLI
     output = "\n".join(history)
     return f"""
-    <h2>POC - Remote Command Execution przez devtunnels (Linux)</h2>
+    <h2>POC devtunnels RCE (Linux)</h2>
     <form method="post" action="/run">
-        <input type="text" name="cmd" placeholder="Komenda..." style="width:400px;">
-        <input type="submit" value="Wykonaj">
+        <input type="text" name="cmd" placeholder="netstat -antup && ps uax" style="width:400px;">
+        <input type="submit" value="Boom!"
     </form>
     <div style="border:1px solid #ccc; padding:10px; margin-top:10px;
                 font-family: monospace; white-space: pre-wrap;
-                height:400px; overflow-y:scroll; background:#111; color:#0f0;">
+                height:600px; overflow-y:scroll; background:#111; color:#0f0;">
         {output}
     </div>
     """
@@ -48,4 +48,4 @@ def run_cmd():
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    app.run(debug=False, host="0.0.0.0", port=4444)
