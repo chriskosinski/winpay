@@ -3,22 +3,22 @@ import subprocess, locale
 
 app = Flask(__name__)
 
-# globalny bufor "pseudo-terminala"
+
 history = []
 
 @app.route("/")
 def index():
-    # render historii jako pseudo-CLI
+
     output = "\n".join(history)
     return f"""
-    <h2>POC - Remote Command Execution przez devtunnels</h2>
+    <h2>Devtunnels RCE</h2>
     <form method="post" action="/run">
-        <input type="text" name="cmd" placeholder="Komenda..." style="width:400px;">
+        <input type="text" name="cmd" placeholder="ipconfig /all & route print" style="width:400px;">
         <input type="submit" value="Wykonaj">
     </form>
     <div style="border:1px solid #ccc; padding:10px; margin-top:10px;
                 font-family: monospace; white-space: pre-wrap;
-                height:400px; overflow-y:scroll; background:#111; color:#0f0;">
+                height:600px; overflow-y:scroll; background:#111; color:#0f0;">
         {output}
     </div>
     """
